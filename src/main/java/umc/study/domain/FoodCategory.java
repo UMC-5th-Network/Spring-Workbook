@@ -10,8 +10,8 @@ import javax.persistence.*;
 @Builder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
-@Entity(name="Member")
-@Table(name="member")
+@Entity(name="FoodCategory")
+@Table(name="food_category")
 public class FoodCategory extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
