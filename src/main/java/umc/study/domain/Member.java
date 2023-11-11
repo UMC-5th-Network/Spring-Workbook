@@ -27,14 +27,17 @@ public class Member extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    @Column(nullable = false, length = 20)
     private String name;
 
     //private String gender;
 
     private Integer age;
 
+    @Column(nullable = false, length = 40)
     private String address;
 
+    @Column(nullable = false, length = 40)
     private String spec_address;
 
     //private String status;
@@ -44,14 +47,17 @@ public class Member extends BaseEntity {
     //private String social_type;
 
     @Enumerated(EnumType.STRING)
+    @Column(columnDefinition = "VARCHAR(10)")
     private Gender gender;
 
     @Enumerated(EnumType.STRING)
     private SocialType socialType;
 
     @Enumerated(EnumType.STRING)
+    @Column(columnDefinition = "VARCHAR(15) DEFAULT 'ACTIVE'")
     private MemberStatus status;
 
+    @Column(nullable = false, length = 50)
     private String email;
 
     private Integer point;

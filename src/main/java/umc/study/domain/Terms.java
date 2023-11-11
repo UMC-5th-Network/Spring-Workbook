@@ -20,11 +20,12 @@ public class Terms extends BaseEntity {
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private long id;
 
+    @Column(nullable = false, length = 20)
     private String title;
 
     private String body;
 
-    private boolean optional;
+    private Boolean optional;
 
     @OneToMany(mappedBy = "member_agree", cascade = CascadeType.ALL)
     private List<MemberAgree> memberAgreeList = new ArrayList<>();
