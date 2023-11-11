@@ -3,9 +3,11 @@ package umc.study.domain;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.apache.catalina.Store;
+import umc.study.domain.common.BaseEntity;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.time.LocalDateTime;
 
 @Getter
@@ -13,7 +15,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Entity(name="Mission")
 @Table(name="mission")
-public class Mission {
+public class Mission extends BaseEntity {
 
     @Id
     private long id;
@@ -24,7 +26,9 @@ public class Mission {
 
     private String mission_spec;
 
+    /*
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="stored_id", referencedColumnName = "id")
+    @JoinColumn(name="store_id", referencedColumnName = "id")
     private Store store;
+    */
 }

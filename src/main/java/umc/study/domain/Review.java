@@ -3,6 +3,7 @@ package umc.study.domain;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import umc.study.domain.common.BaseEntity;
 
 import javax.persistence.*;
 
@@ -11,7 +12,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Entity(name="Review")
 @Table(name="review")
-public class Review {
+public class Review extends BaseEntity {
     @Id
     private long id;
 
