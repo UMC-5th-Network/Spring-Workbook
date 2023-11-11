@@ -1,21 +1,23 @@
 package umc.study.domain;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import umc.study.domain.common.BaseEntity;
+import umc.study.domain.mapping.MemberAgree;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
-@NoArgsConstructor
+@Builder
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor
 @Entity(name="Terms")
 @Table(name="terms")
 public class Terms extends BaseEntity {
     @Id
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     private long id;
 
     private String title;
@@ -23,4 +25,7 @@ public class Terms extends BaseEntity {
     private String body;
 
     private boolean optional;
+
+    @OneToMany(mappedBy = "member_agree", cascade = CascadeType.ALL)
+    private List<MemberAgree> memberAgreeList = new ArrayList<>();
 }
