@@ -1,19 +1,22 @@
 package umc.study.domain;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import umc.study.domain.common.BaseEntity;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
-@NoArgsConstructor
+@Builder
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor
 @Entity(name="Review")
 @Table(name="review")
 public class Review extends BaseEntity {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     private String body;
@@ -27,4 +30,7 @@ public class Review extends BaseEntity {
     @ManyToOne(fetch= FetchType.LAZY)
     @JoinColumn(name="store_id",referencedColumnName = "id")
     private Store store;
+
+    @OneToMany(mappedBy = "review_image", cascade = CascadeType.ALL)
+    private List<ReviewImage> reviewImageList = new ArrayList<>();
 }
