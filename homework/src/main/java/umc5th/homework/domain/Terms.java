@@ -18,11 +18,13 @@ public class Terms extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(name = "title", nullable = false, length = 20)
     private String title;
+    @Column(name = "body", nullable = false)
     private String body;
+    @Column(name = "optional", nullable = false)
     private Boolean optional;
 
     @OneToMany(mappedBy = "terms", cascade = CascadeType.ALL)
     private List<MemberAgree> memberAgreeList = new ArrayList<>();
-
 }
