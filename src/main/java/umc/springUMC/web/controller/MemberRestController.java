@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import umc.springUMC.apiPayload.ApiResponse;
+import umc.springUMC.service.MemberService.MemberCommandService;
 import umc.springUMC.web.dto.MemberRequestDTO;
 import umc.springUMC.web.dto.MemberResponseDTO;
 
