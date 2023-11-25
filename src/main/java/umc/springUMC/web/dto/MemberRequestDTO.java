@@ -16,6 +16,6 @@ public class MemberRequestDTO {
         Integer birthDay;
         String address;
         String specAddress;
-        List<Long> preferCategory;
+        List<Long> favorCategory;
     }
 }
