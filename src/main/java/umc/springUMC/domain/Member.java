@@ -32,7 +32,7 @@ public class Member extends BaseEntity {
     @Column(nullable = false, length = 20)
     private String name;
 
-    @Column(nullable = false, length = 50)
+//    @Column(nullable = false, length = 50)
     private String email;
 
     private Integer age;
@@ -43,6 +43,9 @@ public class Member extends BaseEntity {
 
     @Column(nullable = false, length = 40)
     private String address;
+
+    @Column(nullable = false, length = 40)
+    private String specAddress;
 
     private Integer point;
 
