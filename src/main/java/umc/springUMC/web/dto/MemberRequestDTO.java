@@ -9,6 +9,7 @@ public class MemberRequestDTO {
     @Getter
     public static class JoinDto {
         String name;
+        String password;
         Integer age;
         Integer gender;
         Integer birthYear;

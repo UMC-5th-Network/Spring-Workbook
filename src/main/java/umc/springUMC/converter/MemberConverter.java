@@ -34,6 +34,7 @@ public class MemberConverter {
         }
 
         return Member.builder()
+                .password(request.getPassword())
                 .age(request.getAge())
                 .address(request.getAddress())
                 .specAddress(request.getSpecAddress())
