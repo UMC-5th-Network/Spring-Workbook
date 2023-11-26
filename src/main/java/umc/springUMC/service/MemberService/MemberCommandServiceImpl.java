@@ -31,7 +31,7 @@ public class MemberCommandServiceImpl implements MemberCommandService{
         Member newMember = MemberConverter.toMember(request);
 
         List<FoodCategory> foodCategoryList = request.getFavorCategory().stream()
-                .map(category -> {
+                .map(category -> {  // validation을 어노테이션 사용하도록 리팩토링 가능.
                     return foodCategoryRepository.findById(category).orElseThrow(() -> new FoodCategoryHandler(ErrorStatus.FOOD_CATEGORY_NOT_FOUND));
                 }).collect(Collectors.toList());
 
