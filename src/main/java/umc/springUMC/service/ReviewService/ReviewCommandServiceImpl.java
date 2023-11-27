@@ -14,8 +14,6 @@ import umc.springUMC.repository.ReviewRepository;
 import umc.springUMC.repository.StoreRepository;
 import umc.springUMC.web.dto.ReviewRequestDTO;
 
-import javax.persistence.EntityNotFoundException;
-
 @Service
 @RequiredArgsConstructor
 public class ReviewCommandServiceImpl implements ReviewCommandService{
@@ -25,9 +23,9 @@ public class ReviewCommandServiceImpl implements ReviewCommandService{
         private final StoreRepository storeRepository;
 
         @Override
-        public Review writeReview(ReviewRequestDTO.WriteReviewDTO request) {
+        public Review writeReview(Long memberId, ReviewRequestDTO.WriteReviewDTO request) {
 
-            Member member = memberRepository.findById(request.getMemberId())
+            Member member = memberRepository.findById(memberId)
                     .orElseThrow(() -> new MemberHandler(ErrorStatus.MEMBER_NOT_FOUND));
             Store store = storeRepository.findById(request.getStoreId())
                     .orElseThrow(() -> new StoreHandler(ErrorStatus.STORE_NOT_FOUND));
