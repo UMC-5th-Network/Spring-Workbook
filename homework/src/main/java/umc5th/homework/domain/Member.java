@@ -3,6 +3,8 @@ package umc5th.homework.domain;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
 import umc5th.homework.domain.common.BaseEntity;
 import umc5th.homework.domain.enums.Gender;
 import umc5th.homework.domain.enums.MemberStatus;
@@ -18,6 +20,8 @@ import java.util.List;
 @Entity
 @Getter
 @Setter
+@DynamicUpdate
+@DynamicInsert
 @Builder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
@@ -44,9 +48,7 @@ public class Member extends BaseEntity {
     private SocilaType socilaType;
 
     @Enumerated(EnumType.STRING)
-    //@Column(columnDefinition = "VARCHAR(15) DEFAULT 'ACTIVE'")
-    @Column(nullable = false, length = 15)
-    @ColumnDefault("'ACTIVE'")
+    @Column(columnDefinition = "VARCHAR(15) DEFAULT 'ACTIVE'")
     private MemberStatus status;
 
     private LocalDate inactiveDate;
@@ -54,6 +56,7 @@ public class Member extends BaseEntity {
 //    @Column(nullable = false, length = 50)
     private String email;
 
+    @ColumnDefault("0")
     private Integer point;
 
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
