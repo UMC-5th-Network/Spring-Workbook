@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import umc5th.homework.validation.annotation.ExistCategories;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -19,6 +20,7 @@ public class MemberRequestDTO {
         Integer birthDay;
         String address;
         String specAddress;
+        @ExistCategories
         List<Long> preferCategory;
     }
 
