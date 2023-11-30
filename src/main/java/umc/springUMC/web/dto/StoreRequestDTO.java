@@ -12,7 +12,7 @@ public class StoreRequestDTO {
 
         @NotNull
         String name;
-        @NotBlank
+        @NotNull
         Float score;
         @NotNull
         String address;
