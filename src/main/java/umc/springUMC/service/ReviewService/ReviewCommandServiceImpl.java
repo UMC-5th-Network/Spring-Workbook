@@ -23,9 +23,9 @@ public class ReviewCommandServiceImpl implements ReviewCommandService{
         private final StoreRepository storeRepository;
 
         @Override
-        public Review writeReview(Long memberId, ReviewRequestDTO.WriteReviewDTO request) {
+        public Review writeReview(ReviewRequestDTO.WriteReviewDTO request) {
 
-            Member member = memberRepository.findById(memberId)
+            Member member = memberRepository.findById(request.getMemberId())
                     .orElseThrow(() -> new MemberHandler(ErrorStatus.MEMBER_NOT_FOUND));
             Store store = storeRepository.findById(request.getStoreId())
                     .orElseThrow(() -> new StoreHandler(ErrorStatus.STORE_NOT_FOUND));

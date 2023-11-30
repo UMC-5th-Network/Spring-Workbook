@@ -5,5 +5,5 @@ import umc.springUMC.web.dto.ReviewRequestDTO;
 
 public interface ReviewCommandService {
 
-    Review writeReview(Long memberId, ReviewRequestDTO.WriteReviewDTO request);
+    Review writeReview(ReviewRequestDTO.WriteReviewDTO request);
 }
