@@ -3,6 +3,8 @@ package umc.springUMC.service.StoreService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import umc.springUMC.apiPayload.code.status.ErrorStatus;
+import umc.springUMC.apiPayload.exception.handler.MapHandler;
 import umc.springUMC.converter.StoreConverter;
 import umc.springUMC.domain.Map;
 import umc.springUMC.domain.Store;
@@ -10,7 +12,6 @@ import umc.springUMC.repository.MapRepository;
 import umc.springUMC.repository.StoreRepository;
 import umc.springUMC.web.dto.StoreRequestDTO;
 
-import javax.persistence.EntityNotFoundException;
 
 @Service
 @RequiredArgsConstructor
@@ -24,7 +25,7 @@ public class StoreCommandServiceImpl implements StoreCommandService {
     @Override
     @Transactional
     public Store addStore(StoreRequestDTO.AddStoreDto request) {
-        Map map = mapRepository.findById(request.getMapId()).orElseThrow(() -> new EntityNotFoundException("Map not found : " + request.getMapId()));
+        Map map = mapRepository.findById(request.getMapId()).orElseThrow(() -> new MapHandler(ErrorStatus.MAP_NOT_FOUND));
 
         Store store = StoreConverter.toStore(request, map);
 
