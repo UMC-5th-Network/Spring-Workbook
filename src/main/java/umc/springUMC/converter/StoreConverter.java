@@ -9,6 +9,7 @@ import java.time.LocalDateTime;
 
 public class StoreConverter {
 
+    // Store entity 받아서 ResponseDTO로 만듦
     public static StoreResponseDTO.AddStoreResultDTO toAddStoreResultDTO(Store store) {
         return StoreResponseDTO.AddStoreResultDTO.builder()
                 .storeId(store.getId())
@@ -16,6 +17,7 @@ public class StoreConverter {
                 .build();
     }
 
+    // RequestDTO 받아서 Store entity 생성
     public static Store toStore(StoreRequestDTO.AddStoreDto request, Map map) {
         Store store = Store.builder()
                 .name(request.getName())

@@ -20,6 +20,7 @@ public class StoreCommandServiceImpl implements StoreCommandService {
     private final StoreRepository storeRepository;
     private final MapRepository mapRepository;
 
+    // storeRepository에 store 추가
     @Override
     @Transactional
     public Store addStore(StoreRequestDTO.AddStoreDto request) {
