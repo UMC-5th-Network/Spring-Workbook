@@ -17,8 +17,8 @@ public class ReviewRequestDTO {
         String body;
         @NotNull
         Float score;
-//        @NotNull
-//        Long memberId;
+        @NotNull
+        Long memberId;
         @NotNull
         Long storeId;
         List<Long> reviewImg;
