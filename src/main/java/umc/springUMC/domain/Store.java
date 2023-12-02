@@ -35,4 +35,9 @@ public class Store extends BaseEntity {
 
     @OneToMany(mappedBy = "store", cascade = CascadeType.ALL)
     private List<Mission> missionList = new ArrayList<>();
+
+    public void setMap(Map map) { // Map과 Store의 양방향 관계 설정
+        this.map = map;
+        map.getStoreList().add(this);
+    }
 }

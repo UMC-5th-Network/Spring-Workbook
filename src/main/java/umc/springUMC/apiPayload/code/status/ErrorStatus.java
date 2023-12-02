@@ -25,10 +25,19 @@ public enum ErrorStatus implements BaseErrorCode {
     ARTICLE_NOT_FOUND(HttpStatus.NOT_FOUND, "ARTICLE4001", "게시글이 없습니다."),
 
     // For test
-    TEMP_EXCEPTION(HttpStatus.BAD_REQUEST, "TEMP4001", "이거는 테스트");
+    TEMP_EXCEPTION(HttpStatus.BAD_REQUEST, "TEMP4001", "이거는 테스트"),
 
-//    // FoodCategory Error
-//    FOOD_CATEGORY_NOT_FOUND(HttpStatus.NOT_FOUND, "FOOD_CATEGORY4001", "음식 카테고리가 없습니다.");
+    // FoodCategory Error
+    FOOD_CATEGORY_NOT_FOUND(HttpStatus.NOT_FOUND, "FOOD_CATEGORY4001", "음식 카테고리가 없습니다."),
+
+    // Store Error
+    STORE_NOT_FOUND(HttpStatus.BAD_REQUEST, "STORE4001", "가게가 없습니다."),
+
+    // Map Error
+    MAP_NOT_FOUND(HttpStatus.BAD_REQUEST, "MAP4001", "지역이 없습니다."),
+
+    // Mission Error
+    MISSION_NOT_FOUND(HttpStatus.BAD_REQUEST, "MISSION4001", "미션이 없습니다.");
 
     private final HttpStatus httpStatus;
     private final String code;
@@ -50,7 +59,6 @@ public enum ErrorStatus implements BaseErrorCode {
                 .code(code)
                 .isSuccess(false)
                 .httpStatus(httpStatus)
-                .build()
-                ;
+                .build();
     }
 }

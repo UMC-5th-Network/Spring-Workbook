@@ -35,4 +35,9 @@ public class Mission extends BaseEntity {
 
     @OneToMany(mappedBy = "mission", cascade = CascadeType.ALL)
     private List<MemberMission> memberMissionList = new ArrayList<>();
+    
+    public void setStore(Store store) { // 양방향 관계 설정
+        this.store = store;
+        store.getMissionList().add(this);
+    }
 }
