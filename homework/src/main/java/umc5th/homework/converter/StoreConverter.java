@@ -1,10 +1,12 @@
 package umc5th.homework.converter;
 
 import umc5th.homework.domain.Region;
+import umc5th.homework.domain.Review;
 import umc5th.homework.domain.Store;
 import umc5th.homework.web.dto.StoreDTO;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class StoreConverter {
 
@@ -25,5 +27,13 @@ public class StoreConverter {
         store.setRegion(region);
 
         return store;
+    }
+
+    public static StoreDTO.ReviewPreViewDTO reviewPreViewDTO(Review review){
+        return null;
+    }
+
+    public static StoreDTO.ReviewPreViewListDTO reviewPreViewListDTO(List<Review> reviewList){
+        return null;
     }
 }
