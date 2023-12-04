@@ -45,7 +45,7 @@ public class StoreDTO {
         List<ReviewPreViewDTO> reviewList;
         Integer listSize;
         Integer totalPage;
-        Long totalElement;
+        Long totalElements;
         Boolean isFirst;
         Boolean isLast;
     }

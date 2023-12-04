@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import umc5th.homework.apiPayload.ApiResponse;
 import umc5th.homework.converter.StoreConverter;
 import umc5th.homework.domain.Store;
+import umc5th.homework.service.StoreQueryService;
 import umc5th.homework.service.StoreService;
 import umc5th.homework.web.dto.StoreDTO;
 
@@ -20,6 +21,7 @@ import umc5th.homework.web.dto.StoreDTO;
 @RequestMapping("/store")
 public class StoreRestController {
     private final StoreService storeService;
+    private final StoreQueryService storeQueryService;
 
     @PostMapping("/add")
     public ApiResponse<StoreDTO.AddResponseDTO> add(@RequestBody @Valid StoreDTO.AddDTO request){
@@ -43,7 +45,8 @@ public class StoreRestController {
     @Parameters({
             @Parameter(name = "storeId", description = "가게의 아이디, path variable 입니다!")
     })
-    public ApiResponse<StoreDTO.ReviewPreViewListDTO> getReviewList(@PathVariable(name = "storeId") Long storeId){
+    public ApiResponse<StoreDTO.ReviewPreViewListDTO> getReviewList(@PathVariable(name = "storeId") Long storeId, @RequestParam(name = "page") Integer page){
+        storeQueryService.getReviewList(storeId, page);
         return null;
     }
 }
