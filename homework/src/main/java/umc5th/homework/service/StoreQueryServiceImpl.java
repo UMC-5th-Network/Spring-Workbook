@@ -6,9 +6,11 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import umc5th.homework.domain.Member;
+import umc5th.homework.domain.Mission;
 import umc5th.homework.domain.Review;
 import umc5th.homework.domain.Store;
 import umc5th.homework.repository.MemberRepository;
+import umc5th.homework.repository.MissionRepository;
 import umc5th.homework.repository.ReviewRepository;
 import umc5th.homework.repository.StoreRepository;
 
@@ -21,10 +23,19 @@ public class StoreQueryServiceImpl implements StoreQueryService{
     private final StoreRepository storeRepository;
     private final ReviewRepository reviewRepository;
     private final MemberRepository memberRepository;
+    private final MissionRepository missionRepository;
 
     @Override
     public Optional<Store> findStore(Long id) {
         return storeRepository.findById(id);
+    }
+
+    @Override
+    public Page<Mission> getMissionList(Long storeId, Integer page) {
+        Store store = storeRepository.findById(storeId).get();
+
+        Page<Mission> missions = missionRepository.findAllByStore(store, PageRequest.of(page, 10));
+        return missions;
     }
 
     @Override

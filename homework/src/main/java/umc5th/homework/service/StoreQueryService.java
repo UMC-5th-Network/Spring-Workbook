@@ -1,6 +1,7 @@
 package umc5th.homework.service;
 
 import org.springframework.data.domain.Page;
+import umc5th.homework.domain.Mission;
 import umc5th.homework.domain.Review;
 import umc5th.homework.domain.Store;
 
@@ -11,4 +12,6 @@ public interface StoreQueryService {
     Optional<Store> findStore(Long id);
     Page<Review> getReviewListByStore(Long storeId, Integer page);
     Page<Review> getReviewListByMember(Long storeId, Integer page);
+
+    Page<Mission> getMissionList(Long storeId, Integer page);
 }
