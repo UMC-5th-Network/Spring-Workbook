@@ -8,9 +8,11 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 import umc5th.homework.apiPayload.ApiResponse;
 import umc5th.homework.converter.StoreConverter;
+import umc5th.homework.domain.Review;
 import umc5th.homework.domain.Store;
 import umc5th.homework.service.StoreQueryService;
 import umc5th.homework.service.StoreService;
@@ -43,10 +45,11 @@ public class StoreRestController {
             @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "AUTH006", description = "acess 토큰 모양이 이상함",content = @Content(schema = @Schema(implementation = ApiResponse.class))),
     })
     @Parameters({
-            @Parameter(name = "storeId", description = "가게의 아이디, path variable 입니다!")
+            @Parameter(name = "storeId", description = "가게의 아이디, path variable 입니다!"),
+            @Parameter(name = "page", description = "페이지 번호, 0번이 1 페이지 입니다."),
     })
     public ApiResponse<StoreDTO.ReviewPreViewListDTO> getReviewList(@PathVariable(name = "storeId") Long storeId, @RequestParam(name = "page") Integer page){
-        storeQueryService.getReviewList(storeId, page);
-        return null;
+        Page<Review> reviewList = storeQueryService.getReviewList(storeId, page);
+        return ApiResponse.onSuccess(StoreConverter.reviewPreViewListDTO(reviewList));
     }
 }
