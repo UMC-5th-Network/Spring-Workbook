@@ -9,5 +9,6 @@ import java.util.Optional;
 //Spring Data JPA에서 제공하는 Paging 관련 추상화 찾아보기!
 public interface StoreQueryService {
     Optional<Store> findStore(Long id);
-    Page<Review> getReviewList(Long storeId, Integer page);
+    Page<Review> getReviewListByStore(Long storeId, Integer page);
+    Page<Review> getReviewListByMember(Long storeId, Integer page);
 }

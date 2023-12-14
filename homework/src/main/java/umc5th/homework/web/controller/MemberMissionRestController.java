@@ -7,12 +7,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import umc5th.homework.apiPayload.ApiResponse;
-import umc5th.homework.domain.Mission;
 import umc5th.homework.domain.mapping.MemberMission;
-import umc5th.homework.service.MemberMissionService;
-import umc5th.homework.service.MissionService;
+import umc5th.homework.service.MemberSerice.MemberMissionService;
 import umc5th.homework.web.dto.MemberMissionDTO;
-import umc5th.homework.web.dto.MissionDTO;
 
 @RestController
 @RequiredArgsConstructor

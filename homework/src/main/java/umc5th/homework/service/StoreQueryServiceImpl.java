@@ -5,8 +5,10 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import umc5th.homework.domain.Member;
 import umc5th.homework.domain.Review;
 import umc5th.homework.domain.Store;
+import umc5th.homework.repository.MemberRepository;
 import umc5th.homework.repository.ReviewRepository;
 import umc5th.homework.repository.StoreRepository;
 
@@ -18,16 +20,26 @@ import java.util.Optional;
 public class StoreQueryServiceImpl implements StoreQueryService{
     private final StoreRepository storeRepository;
     private final ReviewRepository reviewRepository;
+    private final MemberRepository memberRepository;
+
     @Override
     public Optional<Store> findStore(Long id) {
         return storeRepository.findById(id);
     }
 
     @Override
-    public Page<Review> getReviewList(Long storeId, Integer page) {
+    public Page<Review> getReviewListByStore(Long storeId, Integer page) {
         Store store = storeRepository.findById(storeId).get();
 
         Page<Review> storePage = reviewRepository.findAllByStore(store, PageRequest.of(page, 10));
+        return storePage;
+    }
+
+    @Override
+    public Page<Review> getReviewListByMember(Long memberId, Integer page) {
+        Member member = memberRepository.findById(memberId).get();
+
+        Page<Review> storePage = reviewRepository.findAllByMember(member, PageRequest.of(page, 10));
         return storePage;
     }
 }

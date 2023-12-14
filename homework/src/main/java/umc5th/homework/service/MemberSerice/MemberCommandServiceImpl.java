@@ -1,4 +1,4 @@
-package umc5th.homework.service;
+package umc5th.homework.service.MemberSerice;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
