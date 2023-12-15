@@ -52,4 +52,11 @@ public class MemberMissionService {
 
         return memberMissionPage;
     }
+
+    @Transactional
+    public Long saveComplete(Long memberMissionId){
+        MemberMission memberMission = memberMissionRepository.findById(memberMissionId).get();
+        memberMission.setStatus(MissionStatus.COMPLETE);
+        return  memberMissionId;
+    }
 }
