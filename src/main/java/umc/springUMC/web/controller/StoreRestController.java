@@ -63,6 +63,6 @@ public class StoreRestController {
     })
     public ApiResponse<StoreResponseDTO.ReviewPreViewListDTO> getReviewList(@ExistStore @PathVariable(name = "storeId") Long storeId, @RequestParam(name = "page") Integer page){
         Page<Review> reviewList = storeQueryService.getReviewList(storeId,page);
-        return ApiResponse.onSuccess(StoreConverter.reviewPreviewListDTO(reviewList));
+        return ApiResponse.onSuccess(StoreConverter.reviewPreViewListDTO(reviewList));
     }
 }

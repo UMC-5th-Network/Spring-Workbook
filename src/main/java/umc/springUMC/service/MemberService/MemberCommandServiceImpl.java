@@ -1,6 +1,8 @@
 package umc.springUMC.service.MemberService;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import umc.springUMC.apiPayload.code.status.ErrorStatus;
@@ -9,9 +11,11 @@ import umc.springUMC.converter.MemberConverter;
 import umc.springUMC.converter.MemberFavorConverter;
 import umc.springUMC.domain.FoodCategory;
 import umc.springUMC.domain.Member;
+import umc.springUMC.domain.Review;
 import umc.springUMC.domain.mapping.MemberFavor;
 import umc.springUMC.repository.FoodCategoryRepository;
 import umc.springUMC.repository.MemberRepository;
+import umc.springUMC.repository.ReviewRepository;
 import umc.springUMC.web.dto.MemberRequestDTO;
 
 import java.util.List;
@@ -24,6 +28,7 @@ public class MemberCommandServiceImpl implements MemberCommandService{
 
     private final MemberRepository memberRepository;
     private final FoodCategoryRepository foodCategoryRepository;
+    private final ReviewRepository reviewRepository;
 
     @Override
     @Transactional
@@ -40,5 +45,19 @@ public class MemberCommandServiceImpl implements MemberCommandService{
         memberFavorList.forEach(memberFavor -> {memberFavor.setMember(newMember);});
 
         return memberRepository.save(newMember);
+    }
+
+    @Override
+    public boolean existMember(List<Long> values) {
+        return values.stream()
+                .allMatch(value -> memberRepository.existsById(value));
+    }
+
+    @Override
+    public Page<Review> getReviewList(Long memberId, Integer page) {
+        Member member = memberRepository.findById(memberId).get();
+
+        Page<Review> StorePage = reviewRepository.findAllByMember(member, PageRequest.of(page, 10));
+        return StorePage;
     }
 }
