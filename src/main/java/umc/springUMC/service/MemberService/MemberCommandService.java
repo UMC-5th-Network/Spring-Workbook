@@ -3,6 +3,7 @@ package umc.springUMC.service.MemberService;
 import org.springframework.data.domain.Page;
 import umc.springUMC.domain.Member;
 import umc.springUMC.domain.Review;
+import umc.springUMC.domain.mapping.MemberMission;
 import umc.springUMC.web.dto.MemberRequestDTO;
 
 import java.util.List;
@@ -14,4 +15,6 @@ public interface MemberCommandService {
     Page<Review> getReviewList(Long memberId, Integer page);
 
     boolean existMember(List<Long> value);
+
+    Page<MemberMission> getMemberMissionList(Long memberId, String missionStatus, Integer page);
 }

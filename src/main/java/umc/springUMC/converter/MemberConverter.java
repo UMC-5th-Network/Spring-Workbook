@@ -1,12 +1,17 @@
 package umc.springUMC.converter;
 
+import org.springframework.data.domain.Page;
 import umc.springUMC.domain.Member;
+import umc.springUMC.domain.Mission;
 import umc.springUMC.domain.enums.Gender;
+import umc.springUMC.domain.mapping.MemberMission;
 import umc.springUMC.web.dto.MemberRequestDTO;
 import umc.springUMC.web.dto.MemberResponseDTO;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class MemberConverter {
 
@@ -41,6 +46,30 @@ public class MemberConverter {
                 .gender(gender)
                 .name(request.getName())
                 .memberFavorList(new ArrayList<>())
+                .build();
+    }
+
+    public static MemberResponseDTO.MissionPreViewDTO missionPreViewDTO(MemberMission memberMission){
+        Mission mission = memberMission.getMission();
+        return MemberResponseDTO.MissionPreViewDTO.builder()
+                .reward(mission.getReward())
+                .deadline(mission.getDeadline())
+                .missionSpec(mission.getMissionSpec())
+                .createdAt(mission.getCreatedAt().toLocalDate())
+                .build();
+    }
+
+    public static MemberResponseDTO.MissionPreViewListDTO missionPreViewListDTO(Page<MemberMission> missionList) {
+        List<MemberResponseDTO.MissionPreViewDTO> missionPreViewDTOList = missionList.stream()
+                .map(MemberConverter::missionPreViewDTO).collect(Collectors.toList());
+
+        return MemberResponseDTO.MissionPreViewListDTO.builder()
+                .isLast(missionList.isLast())
+                .isFirst(missionList.isFirst())
+                .totalPage(missionList.getTotalPages())
+                .totalElements(missionList.getTotalElements())
+                .listSize(missionPreViewDTOList.size())
+                .missionList(missionPreViewDTOList)
                 .build();
     }
 }

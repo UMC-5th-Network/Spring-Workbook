@@ -18,5 +18,5 @@ public interface StoreService {
     Optional<Store> findStore(Long id);
     Page<Review> getReviewList(Long StoreId, Integer page); // Page -> paging을 위한 추상화 제공
 
-    Page<Mission> getMissionList(Long storeId, int page);
+    Page<Mission> getMissionList(Long storeId, Integer page);
 }

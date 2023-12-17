@@ -64,7 +64,7 @@ public class StoreServiceImpl implements StoreService {
     }
 
     @Override
-    public Page<Mission> getMissionList(Long storeId, int page) {
+    public Page<Mission> getMissionList(Long storeId, Integer page) {
         Store store = storeRepository.findById(storeId).get();
 
         Page<Mission> storePage = missionRepository.findAllByStore(store, PageRequest.of(page, 10));
