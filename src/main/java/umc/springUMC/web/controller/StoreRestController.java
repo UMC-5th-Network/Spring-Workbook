@@ -18,6 +18,7 @@ import umc.springUMC.domain.Store;
 import umc.springUMC.service.ReviewService.ReviewCommandService;
 import umc.springUMC.service.StoreService.StoreCommandService;
 import umc.springUMC.service.StoreService.StoreQueryService;
+import umc.springUMC.validation.annotation.CheckPage;
 import umc.springUMC.validation.annotation.ExistStore;
 import umc.springUMC.web.dto.ReviewRequestDTO;
 import umc.springUMC.web.dto.ReviewResponseDTO;
@@ -61,8 +62,8 @@ public class StoreRestController {
             @Parameter(name = "storeId", description = "가게의 아이디, path variable 입니다!"),
             @Parameter(name = "page", description = "페이지 번호, 0번이 1 페이지 입니다."),
     })
-    public ApiResponse<StoreResponseDTO.ReviewPreViewListDTO> getReviewList(@ExistStore @PathVariable(name = "storeId") Long storeId, @RequestParam(name = "page") Integer page){
-        Page<Review> reviewList = storeQueryService.getReviewList(storeId,page);
+    public ApiResponse<StoreResponseDTO.ReviewPreViewListDTO> getReviewList(@ExistStore @PathVariable(name = "storeId") Long storeId, @CheckPage @RequestParam(name = "page") Integer page){
+        Page<Review> reviewList = storeQueryService.getReviewList(storeId, page-1);
         return ApiResponse.onSuccess(StoreConverter.reviewPreViewListDTO(reviewList));
     }
 }

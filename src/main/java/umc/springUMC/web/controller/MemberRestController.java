@@ -17,6 +17,7 @@ import umc.springUMC.domain.Member;
 import umc.springUMC.domain.Review;
 import umc.springUMC.service.MemberService.MemberCommandService;
 import umc.springUMC.service.ReviewService.ReviewCommandService;
+import umc.springUMC.validation.annotation.CheckPage;
 import umc.springUMC.validation.annotation.ExistMember;
 import umc.springUMC.web.dto.*;
 
@@ -48,8 +49,8 @@ public class MemberRestController {
             @Parameter(name = "memberId", description = "멤버의 아이디, path variable 입니다!"),
             @Parameter(name = "page", description = "페이지 번호, 0번이 1 페이지 입니다."),
     })
-    public ApiResponse<StoreResponseDTO.ReviewPreViewListDTO> getReviewList(@ExistMember @PathVariable(name = "memberId") Long memberId, @RequestParam(name = "page") Integer page){
-        Page<Review> reviewList = memberCommandService.getReviewList(memberId, page);
+    public ApiResponse<StoreResponseDTO.ReviewPreViewListDTO> getReviewList(@ExistMember @PathVariable(name = "memberId") Long memberId, @CheckPage @RequestParam(name = "page") Integer page){
+        Page<Review> reviewList = memberCommandService.getReviewList(memberId, page-1);
         return ApiResponse.onSuccess(StoreConverter.reviewPreViewListDTO(reviewList));
     }
 }
