@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 import umc.springUMC.apiPayload.code.status.ErrorStatus;
 import umc.springUMC.apiPayload.exception.handler.MemberHandler;
 import umc.springUMC.apiPayload.exception.handler.StoreHandler;
-import umc.springUMC.converter.ReviewConverter;
+import umc.springUMC.converter.StoreConverter;
 import umc.springUMC.domain.Member;
 import umc.springUMC.domain.Review;
 import umc.springUMC.domain.Store;
@@ -30,7 +30,7 @@ public class ReviewCommandServiceImpl implements ReviewCommandService{
             Store store = storeRepository.findById(request.getStoreId())
                     .orElseThrow(() -> new StoreHandler(ErrorStatus.STORE_NOT_FOUND));
 
-            Review newReview = ReviewConverter.toReview(request, member, store);
+            Review newReview = StoreConverter.toReview(request, member, store);
 
             return reviewRepository.save(newReview);
         }

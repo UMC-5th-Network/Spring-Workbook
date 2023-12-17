@@ -1,14 +1,9 @@
 package umc.springUMC.converter;
 
-import umc.springUMC.domain.Member;
 import umc.springUMC.domain.Review;
-import umc.springUMC.domain.Store;
-import umc.springUMC.web.dto.ReviewRequestDTO;
 import umc.springUMC.web.dto.ReviewResponseDTO;
-import umc.springUMC.web.dto.StoreResponseDTO;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 public class ReviewConverter {
 
@@ -16,17 +11,6 @@ public class ReviewConverter {
         return ReviewResponseDTO.WriteReviewResultDTO.builder()
                 .reviewId(review.getId())
                 .createdAt(LocalDateTime.now())
-                .build();
-    }
-
-    public static Review toReview (ReviewRequestDTO.WriteReviewDTO request, Member member, Store store) {
-
-        return Review.builder()
-                .title(request.getTitle())
-                .body(request.getBody())
-                .score(request.getScore())
-                .member(member)
-                .store(store)
                 .build();
     }
 }

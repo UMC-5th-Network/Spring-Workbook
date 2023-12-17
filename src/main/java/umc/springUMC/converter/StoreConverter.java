@@ -2,8 +2,10 @@ package umc.springUMC.converter;
 
 import org.springframework.data.domain.Page;
 import umc.springUMC.domain.Map;
+import umc.springUMC.domain.Member;
 import umc.springUMC.domain.Review;
 import umc.springUMC.domain.Store;
+import umc.springUMC.web.dto.ReviewRequestDTO;
 import umc.springUMC.web.dto.StoreRequestDTO;
 import umc.springUMC.web.dto.StoreResponseDTO;
 
@@ -32,6 +34,16 @@ public class StoreConverter {
         store.setMap(map);
 
         return store;
+    }
+
+    public static Review toReview (ReviewRequestDTO.WriteReviewDTO request, Member member, Store store) {
+
+        return Review.builder()
+                .body(request.getBody())
+                .score(request.getScore())
+                .member(member)
+                .store(store)
+                .build();
     }
 
     public static StoreResponseDTO.ReviewPreViewDTO reviewPreViewDTO(Review review){
