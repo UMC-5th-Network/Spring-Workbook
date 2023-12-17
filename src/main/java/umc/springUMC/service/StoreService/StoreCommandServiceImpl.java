@@ -12,6 +12,8 @@ import umc.springUMC.repository.MapRepository;
 import umc.springUMC.repository.StoreRepository;
 import umc.springUMC.web.dto.StoreRequestDTO;
 
+import java.util.List;
+
 
 @Service
 @RequiredArgsConstructor
@@ -30,5 +32,11 @@ public class StoreCommandServiceImpl implements StoreCommandService {
         Store store = StoreConverter.toStore(request, map);
 
         return storeRepository.save(store);
+    }
+
+    @Override
+    public boolean existStore(List<Long> values) {
+        return values.stream()
+                .allMatch(value -> storeRepository.existsById(value));
     }
 }

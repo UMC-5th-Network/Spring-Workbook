@@ -5,6 +5,7 @@ import umc.springUMC.domain.Review;
 import umc.springUMC.domain.Store;
 import umc.springUMC.web.dto.ReviewRequestDTO;
 import umc.springUMC.web.dto.ReviewResponseDTO;
+import umc.springUMC.web.dto.StoreResponseDTO;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -27,13 +28,5 @@ public class ReviewConverter {
                 .member(member)
                 .store(store)
                 .build();
-    }
-
-    public static ReviewResponseDTO.ReviewPreViewDTO reviewPreViewDTO(Review review) {
-        return null;
-    }
-
-    public static ReviewResponseDTO.ReviewPreViewListDTO reviewPreViewListDTO(List<Review> reviewList) {
-        return null;
     }
 }
